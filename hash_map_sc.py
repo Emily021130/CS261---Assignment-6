@@ -92,7 +92,14 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        pass
+        if self.table_load() >= 1.0:
+            self.resize_table(self._capacity * 2)
+        bucket = self._buckets[self._hash_function[key] / self._capacity]
+        if bucket.contains(key) is not None:
+            bucket.contains(key).value = value
+        else:
+            bucket.insert(key, value)
+            self._size += 1
 
     def empty_buckets(self) -> int:
         """
