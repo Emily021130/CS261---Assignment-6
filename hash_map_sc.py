@@ -94,7 +94,7 @@ class HashMap:
         """
         if self.table_load() >= 1.0:
             self.resize_table(self._capacity * 2)
-        bucket = self._buckets[self._hash_function[key] / self._capacity]
+        bucket = self._buckets[self._hash_function[key] % self._capacity]
         if bucket.contains(key) is not None:
             bucket.contains(key).value = value
         else:
