@@ -121,7 +121,7 @@ class HashMap:
         """
         count = 0
         for index in range(self._capacity):
-            if self._buckets[index].length() == 0 or self._buckets[index].is_tombstone is True:
+            if self._buckets[index] == None or self._buckets[index].is_tombstone is True:
                 count += 1
         return count
 
