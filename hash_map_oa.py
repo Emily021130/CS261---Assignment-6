@@ -89,13 +89,29 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        pass
+        if self.table_load() >= 0.5:
+            self.resize_table(self._capacity * 2)
+        hash_key = self._hash_function(key) % self._capacity
+        hash_value = self._buckets[hash_key]
+        j_value = 1
+        while hash_value is not None:
+            if self._buckets[hash_key].key == key:
+                if self._buckets[hash_key].is_tombstone is True:
+                    self._size += 1
+                hash_pair = HashEntry(key, value)
+                self._buckets.set_at_index(hash_key, hash_pair)
+            hash_key = (self._hash_function(key) + j_value ** 2) % self.get_capacity()
+            hash_value = self._buckets[hash_key]
+            j_value += 1
+        hash_pair = HashEntry(key, value)
+        self._buckets.set_at_index(hash_key, hash_pair)
+        self._size += 1
 
     def table_load(self) -> float:
         """
         TODO: Write this implementation
         """
-        """return self._size / self._capacity"""
+        return self._size / self._capacity
 
     def empty_buckets(self) -> int:
         """
@@ -107,7 +123,21 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        pass
+        if new_capacity < self._size:
+            return
+        if self._is_prime(new_capacity) is not True:
+            self._capacity = self._next_prime(new_capacity)
+        else:
+            self._capacity = new_capacity
+        old_buckets = self._buckets
+        self._buckets = DynamicArray()
+        self._size = 0
+        for index in range(self._capacity):
+            self._buckets.append(None)
+        for index in range(old_buckets.length()):
+            hash_to_entry = old_buckets[index]
+            if hash_to_entry is not None and hash_to_entry.is_tombstone is not True:
+                self.put(hash_to_entry.key, hash_to_entry.value)
 
     def get(self, key: str) -> object:
         """
