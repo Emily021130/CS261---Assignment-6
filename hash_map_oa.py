@@ -1,8 +1,8 @@
-# Name:
-# OSU Email:
+# Name: Shuyao Zeng
+# OSU Email: zengs@oregonstate.edu
 # Course: CS261 - Data Structures
-# Assignment:
-# Due Date:
+# Assignment: Assignment 6
+# Due Date: 08/15/2023
 # Description:
 
 from a6_include import (DynamicArray, DynamicArrayException, HashEntry,
@@ -149,7 +149,10 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        pass
+        for index in range(self._buckets.length()):
+            if self._buckets[index].key == key and self._buckets[index].is_tombstone is not True:
+                return self._buckets[index].value
+        return None
 
     def contains_key(self, key: str) -> bool:
         """

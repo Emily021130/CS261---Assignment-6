@@ -1,8 +1,8 @@
 # Name: Shuyao Zeng
-# OSU Email:
+# OSU Email: zengs@oregonstate.edu
 # Course: CS261 - Data Structures
-# Assignment:
-# Due Date:
+# Assignment: Assignment 6
+# Due Date: 08/15/2023
 # Description:
 
 
