@@ -155,10 +155,7 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        for index in range(self._buckets.length()):
-            if self._buckets[index].key == key and self._buckets[index].is_tombstone is not True:
-                return True
-        return False
+        pass
 
     def remove(self, key: str) -> None:
         """

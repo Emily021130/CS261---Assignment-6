@@ -191,6 +191,23 @@ def find_mode(da: DynamicArray) -> tuple[DynamicArray, int]:
     # if you'd like to use a hash map,
     # use this instance of your Separate Chaining HashMap
     map = HashMap()
+    for index in range(da.length()):
+        if map.get(da[index]) is None:
+            map.put(da[index], 1)
+        else:
+            map.put(da[index], map.get(da[index]) + 1)
+    sorted_da = map.get_keys_and_values()
+    mode = DynamicArray()
+    count = 0
+    for index in range(sorted_da.length()):
+        frequency = sorted_da[index][1]
+        if frequency > count:
+            count = frequency
+            mode = DynamicArray()
+            mode.append(sorted_da[index][0])
+        elif frequency == count:
+            mode.append(sorted_da[index][0])
+    return (mode, count)
 
 
 # ------------------- BASIC TESTING ---------------------------------------- #
