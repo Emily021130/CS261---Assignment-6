@@ -99,13 +99,13 @@ class HashMap:
                 if self._buckets[hash_key].is_tombstone is True:
                     self._size += 1
                 hash_pair = HashEntry(key, value)
-                self._buckets.set_at_index(hash_key, hash_pair)
+                self._buckets[hash_key] =hash_pair
                 return
             hash_key = (self._hash_function(key) + j_value ** 2) % self.get_capacity()
             hash_value = self._buckets[hash_key]
             j_value += 1
         hash_pair = HashEntry(key, value)
-        self._buckets.set_at_index(hash_key, hash_pair)
+        self._buckets[hash_key] = hash_pair
         self._size += 1
         return
 
@@ -119,7 +119,11 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        pass
+        count = 0
+        for index in range(self._capacity):
+            if self._buckets[index].length() == 0:
+                count += 1
+        return count
 
     def resize_table(self, new_capacity: int) -> None:
         """
