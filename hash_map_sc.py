@@ -177,7 +177,11 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        pass
+        array_to_return = DynamicArray()
+        for index in range(self._capacity):
+            for i in self._buckets[index]:
+                array_to_return.append((i.key, i.value))
+        return array_to_return
 
 
 def find_mode(da: DynamicArray) -> tuple[DynamicArray, int]:
