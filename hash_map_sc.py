@@ -158,7 +158,11 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        pass
+        linked_list = self._buckets[self._hash_function(key) % self._capacity]
+        if linked_list.contains(key) is not None:
+            return True
+        else:
+            return False
 
     def remove(self, key: str) -> None:
         """
