@@ -167,7 +167,9 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        pass
+        for index in range(self._buckets.length()):
+            self._buckets[index] = None
+        self._size = 0
 
     def get_keys_and_values(self) -> DynamicArray:
         """
