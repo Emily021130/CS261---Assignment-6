@@ -93,7 +93,7 @@ class HashMap:
         TODO: Write this implementation
         """
         if self.table_load() >= 1:
-            self.resize_table(self._next_prime(self._capacity * 2))
+            self.resize_table(self._capacity * 2)
         linked_list = self._buckets[self._hash_function(key) % self._capacity]
         if linked_list.contains(key) is not None:
             linked_list.contains(key).value = value
@@ -121,13 +121,28 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        pass
+        for index in range(self._buckets.length()):
+            self._buckets[index] = LinkedList()
+        self._size = 0
 
     def resize_table(self, new_capacity: int) -> None:
         """
         TODO: Write this implementation
         """
-        pass
+        if new_capacity < 1:
+            return
+        if self._is_prime(new_capacity) is not True:
+            self._capacity = self._next_prime(new_capacity)
+        else:
+            self._capacity = new_capacity
+        old_buckets = self._buckets
+        self._buckets = DynamicArray()
+        self._size = 0
+        for index in range(self._capacity):
+            self._buckets.append(LinkedList())
+        for index in range(old_buckets.length()):
+            for i in old_buckets[index]:
+                self.put(i.key, i.value)
 
     def get(self, key: str):
         """
