@@ -168,7 +168,10 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        pass
+        linked_list = self._buckets[self._hash_function(key) % self._capacity]
+        if linked_list.contains(key) is not None:
+            linked_list.remove(key)
+            self._size -= 1
 
     def get_keys_and_values(self) -> DynamicArray:
         """
