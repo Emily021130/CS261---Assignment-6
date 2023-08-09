@@ -138,6 +138,7 @@ class HashMap:
             hash_to_entry = old_buckets[index]
             if hash_to_entry is not None and hash_to_entry.is_tombstone is not True:
                 self.put(hash_to_entry.key, hash_to_entry.value)
+        self._size -= 1
 
     def get(self, key: str) -> object:
         """
