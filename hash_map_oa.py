@@ -216,7 +216,7 @@ class HashMap:
             while value is None or value.is_tombstone is True:
                 value = self._buckets[self._index]
                 self._index += 1
-        except:
+        except DynamicArrayException:
             raise StopIteration
         return value
 
