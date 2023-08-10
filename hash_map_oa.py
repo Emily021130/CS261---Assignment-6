@@ -167,8 +167,7 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        hash_value = self._buckets[self._hash_function(key) % self._capacity]
-        if hash_value.contains(key) is not None:
+        if self.get(key) is not None:
             return True
         else:
             return False
