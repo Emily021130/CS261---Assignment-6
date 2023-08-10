@@ -149,7 +149,19 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        pass
+        hash_key = self._hash_function(key) % self._capacity
+        hash_value = self._buckets[hash_key]
+        j_value = 1
+        while hash_value is not None:
+            if hash_value.key == key and hash_value.is_tombstone is not True:
+                return hash_value.value
+            elif hash_value.key == key and hash_value.is_tombstone is True:
+                return None
+            else:
+                hash_key = (self._hash_function(key) + j_value ** 2) % self.get_capacity()
+                hash_value = self._buckets[hash_key]
+                j_value += 1
+        return None
 
     def contains_key(self, key: str) -> bool:
         """
