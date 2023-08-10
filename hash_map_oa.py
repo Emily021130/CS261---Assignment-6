@@ -176,7 +176,11 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        pass
+        for index in range(self._buckets.length()):
+            if self._buckets[index] is not None and self._buckets[index].key == key and \
+                    self._buckets[index].is_tombstone is not True:
+                self._buckets[index].is_tombstone = True
+                self._size -= 1
 
     def clear(self) -> None:
         """
