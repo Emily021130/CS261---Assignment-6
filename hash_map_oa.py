@@ -212,13 +212,13 @@ class HashMap:
         TODO: Write this implementation
         """
         try:
-            condition = True
-            while condition is True:
-                if self._buckets[self._index] is None or self._buckets[self._index].is_tombstone is True:
-                    self._index += 1
+            value = None
+            while value is None or value.is_tombstone is True:
+                value = self._buckets[self._index]
+                self._index += 1
         except:
             raise StopIteration
-        return self._buckets[self._index]
+        return value
 
 
 # ------------------- BASIC TESTING ---------------------------------------- #
