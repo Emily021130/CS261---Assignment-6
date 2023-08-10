@@ -204,14 +204,14 @@ class HashMap:
         """
         TODO: Write this implementation
         """
-        self._index = 0
-        return self
+        """self._index = 0
+        return self"""
 
     def __next__(self):
         """
         TODO: Write this implementation
         """
-        try:
+        """try:
             condition = True
             while condition is True:
                 if self._buckets[self._index] is None or self._buckets[self._index].is_tombstone is True:
@@ -220,7 +220,7 @@ class HashMap:
                     condition = False
         except DynamicArrayException:
             raise StopIteration
-        return self._buckets[self._index]
+        return self._buckets[self._index]"""
 
 
 # ------------------- BASIC TESTING ---------------------------------------- #
