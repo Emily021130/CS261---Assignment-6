@@ -195,7 +195,7 @@ class HashMap:
         TODO: Write this implementation
         """
         array_to_return = DynamicArray()
-        for index in range(self._size):
+        for index in range(self._buckets.length()):
             if self._buckets[index] is not None and self._buckets[index].is_tombstone is not True:
                 array_to_return.append((self._buckets[index].key, self._buckets[index].value))
         return array_to_return
