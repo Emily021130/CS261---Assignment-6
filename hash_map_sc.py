@@ -3,7 +3,8 @@
 # Course: CS261 - Data Structures
 # Assignment: Assignment 6
 # Due Date: 08/15/2023
-# Description:
+# Description: Implement an optimized HashMap class which includes nine functions and a separate find_mode
+#              function.
 
 
 from a6_include import (DynamicArray, LinkedList,
@@ -90,7 +91,9 @@ class HashMap:
 
     def put(self, key: str, value: object) -> None:
         """
-        TODO: Write this implementation
+        Update the key/value pair in the hash map. The associated value must be replaced with the new value if
+        the given key already exists in the hash map. A new key/value pair must be added if the given key is not
+        in the hash map.
         """
         if self.table_load() >= 1:
             self.resize_table(self._capacity * 2)
@@ -103,7 +106,7 @@ class HashMap:
 
     def empty_buckets(self) -> int:
         """
-        TODO: Write this implementation
+        Return the number of empty buckets in the hash table.
         """
         count = 0
         for index in range(self._capacity):
@@ -113,13 +116,13 @@ class HashMap:
 
     def table_load(self) -> float:
         """
-        TODO: Write this implementation
+        Return the current hash table load factor.
         """
         return self._size / self._capacity
 
     def clear(self) -> None:
         """
-        TODO: Write this implementation
+        Clear the contents of the hash map but does not change the underlying hash table capacity.
         """
         for index in range(self._buckets.length()):
             self._buckets[index] = LinkedList()
@@ -127,7 +130,8 @@ class HashMap:
 
     def resize_table(self, new_capacity: int) -> None:
         """
-        TODO: Write this implementation
+        Change the capacity of the internal hash table. All existing key/value pairs must remain in the new
+        hash map, and all hash table links must be rehashed.
         """
         if new_capacity < 1:
             return
@@ -146,7 +150,7 @@ class HashMap:
 
     def get(self, key: str):
         """
-        TODO: Write this implementation
+        Return the value associated with the given key. Return None if the key is not in the hash map.
         """
         linked_list = self._buckets[self._hash_function(key) % self._capacity]
         if linked_list.contains(key) is not None:
@@ -156,7 +160,7 @@ class HashMap:
 
     def contains_key(self, key: str) -> bool:
         """
-        TODO: Write this implementation
+        Return True if the given key is in the hash map, return False otherwise.
         """
         if self.get(key) is not None:
             return True
@@ -165,7 +169,8 @@ class HashMap:
 
     def remove(self, key: str) -> None:
         """
-        TODO: Write this implementation
+        Remove the given key and its associated value from the hash map. Do nothing if the key is not in
+        the hash map.
         """
         linked_list = self._buckets[self._hash_function(key) % self._capacity]
         if linked_list.contains(key) is not None:
@@ -174,7 +179,7 @@ class HashMap:
 
     def get_keys_and_values(self) -> DynamicArray:
         """
-        TODO: Write this implementation
+        Return a dynamic array where each index contains a tuple of a key/value pair stored in the hash map.
         """
         array_to_return = DynamicArray()
         for index in range(self._capacity):
@@ -185,7 +190,9 @@ class HashMap:
 
 def find_mode(da: DynamicArray) -> tuple[DynamicArray, int]:
     """
-    TODO: Write this implementation
+    Return a tuple containing, in this order, a dynamic array comprising the mode (most occurring) value(s)
+    of the given array, and an integer representing the highest frequency of occurrence for the mode value(s).
+    Return all values at that frequency if there is more than one value with the highest frequency.
     """
     # if you'd like to use a hash map,
     # use this instance of your Separate Chaining HashMap
