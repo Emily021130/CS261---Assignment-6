@@ -122,7 +122,7 @@ class HashMap:
 
     def clear(self) -> None:
         """
-        Clear the contents of the hash map but does not change the underlying hash table capacity.
+        Clear the contents of the hash map but do not change the underlying hash table capacity.
         """
         for index in range(self._buckets.length()):
             self._buckets[index] = LinkedList()
@@ -160,7 +160,7 @@ class HashMap:
 
     def contains_key(self, key: str) -> bool:
         """
-        Return True if the given key is in the hash map, return False otherwise.
+        Return True if the given key is in the hash map, and return False otherwise.
         """
         if self.get(key) is not None:
             return True
